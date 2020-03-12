@@ -1,4 +1,5 @@
 from pytrends.request import TrendReq
+import json
 
 pytrends = TrendReq(hl='en-US', tz=360)
 
@@ -37,7 +38,7 @@ for keyword in keywords:
     interest = pytrends.interest_over_time()
 
     for subkey in kw_list:
-        interest_data = [{"date": interest.index[x].strftime("%m/%d/%Y"), "val": interest[subkey][x]} for x in range(len(interest))]
+        interest_data = [{"date": interest.index[x].strftime("%m/%d/%Y"), "val": int(interest[subkey][x])} for x in range(len(interest))]
         data[keyword][subkey] = interest_data
 
     if len(kw_list2) > 0:
@@ -45,8 +46,8 @@ for keyword in keywords:
         interest = pytrends.interest_over_time()
 
         for subkey in kw_list2:
-            interest_data = [{"date": interest.index[x].strftime("%m/%d/%Y"), "val": interest[subkey][x]} for x in range(len(interest))]
+            interest_data = [{"date": interest.index[x].strftime("%m/%d/%Y"), "val": int(interest[subkey][x])} for x in range(len(interest))]
             data[keyword][subkey] = interest_data
 
-print(data)
+print(json.dumps(data))
 exit()
