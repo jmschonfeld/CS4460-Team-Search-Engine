@@ -7,24 +7,34 @@
 
 <body>
     <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'Obesity')">Obesity</button>
-      <button class="tablinks" onclick="openCity(event, 'Excerise')">Excerise</button>
+      <button id='obesity-button' class="tablinks" onclick="openCity(event, 'Obesity')">Obesity</button>
       <button class="tablinks" onclick="openCity(event, 'Diet')">Diet</button>
+      <button class="tablinks" onclick="openCity(event, 'Excerise')">Exercise</button>
+      <button class="tablinks" onclick="openCity(event, 'Disease')">Disease</button>
+      <button class="tablinks" onclick="openCity(event, 'Cancer')">Cancer</button>
     </div>
 
     <!-- Tab content -->
     <div id="Obesity" class="tabcontent">
-      <h3>Obesity</h3>
-    </div>
-
-    <div id="Excerise" class="tabcontent">
-      <h3>Excerise</h3>
+      <svg id="obesity-chart" width="600" height="600" style="border: 1px solid #777"></svg>
     </div>
 
     <div id="Diet" class="tabcontent">
-      <h3>Diet</h3>
+      <svg id="diet-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+    </div>
+
+    <div id="Excerise" class="tabcontent">
+      <svg id="exercise-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+    </div>
+
+    <div id="Disease" class="tabcontent">
+      <svg id="disease-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+    </div>
+
+    <div id="Cancer" class="tabcontent">
+      <svg id="cancer-chart" width="600" height="600" style="border: 1px solid #777"></svg>
     </div>
 </body>
 
-<script src="./index.js"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="./index.js"></script>
