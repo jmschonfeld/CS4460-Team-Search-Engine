@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>Health</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
@@ -13,34 +14,162 @@
       <button class="tablinks" onclick="openCity(event, 'Disease')">Disease</button>
       <button class="tablinks" onclick="openCity(event, 'Cancer')">Cancer</button>
       <button class="tablinks" onclick="openCity(event, 'Slider Example')">Slider</button>
+      <button class="tablinks" onclick="openCity(event, 'Bubble Example')">Bubble</button>
     </div>
 
     <!-- Tab content -->
     <div id="Obesity" class="tabcontent">
-      <svg id="obesity-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+      <div class="container">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <svg id="obesity-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h1>Table Pos</h1>
+          </div>
+          <div class="col text-center">
+            <h1>Bubble Pos</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col text-center">
+            <h1>Silder Pos</h1>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
     </div>
 
     <div id="Diet" class="tabcontent">
-      <svg id="diet-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+      <div class="container">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <svg id="diet-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h1>Table Pos</h1>
+          </div>
+          <div class="col text-center">
+            <h1>Bubble Pos</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col text-center">
+            <h1>Silder Pos</h1>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
     </div>
 
     <div id="Excerise" class="tabcontent">
-      <svg id="exercise-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+      <div class="container">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <svg id="exercise-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h1>Table Pos</h1>
+          </div>
+          <div class="col text-center">
+            <h1>Bubble Pos</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col text-center">
+            <h1>Silder Pos</h1>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
     </div>
 
     <div id="Disease" class="tabcontent">
-      <svg id="disease-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+      <div class="container">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <svg id="disease-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h1>Table Pos</h1>
+          </div>
+          <div class="col text-center">
+            <h1>Bubble Pos</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col text-center">
+            <h1>Silder Pos</h1>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
     </div>
 
     <div id="Cancer" class="tabcontent">
-      <svg id="cancer-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+      <div class="container">
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <svg id="cancer-chart" width="600" height="600" style="border: 1px solid #777"></svg>
+          </div>
+          <div class="col"></div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h1>Table Pos</h1>
+          </div>
+          <div class="col text-center">
+            <h1>Bubble Pos</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col text-center">
+            <h1>Silder Pos</h1>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
     </div>
+
     <div id="Slider Example" class="tabcontent">
       <div id="slider">
       </div>
     </div>
+
+    <div id="Bubble Example" class="tabcontent">
+      <div id="bubbles">
+      </div>
+    </div>
+
 </body>
 
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="./index.js"></script>
 <script src="./slider.js"></script>
+<script src="./bubble.js"></script>
