@@ -73,8 +73,6 @@ function updateBubbles_active(topic, date) {
       .append("g")
       .attr("class", "node");
 
-  console.log(nodes);
-
   nodeEnter.append("title");
   nodeEnter.append("circle");
   nodeEnter.append("text")
