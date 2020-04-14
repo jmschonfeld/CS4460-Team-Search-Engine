@@ -1,5 +1,5 @@
 var formatDateIntoYear = d3.timeFormat("%Y");
-var formatDate = d3.timeFormat("%m/%d/%y");
+var formatDate = d3.timeFormat("%m/%d/%Y");
 var parseDate = d3.timeParse("%m/%d/%y");
 
 var startDate;
@@ -15,13 +15,13 @@ var svg = d3.select("#slider")
     .attr("height", height + margin.top + margin.bottom);
 
 
-d3.json("/data_collection/data.json").then(function(data) {
+d3.json("/data_collection/play_around.json").then(function(data) {
 
-  var dateList = data['obesity']['childhood obesity'];
-  startDate = new Date(dateList[0]['date']);
-  endDate = new Date(dateList[dateList.length -1]['date']);
+  var dateDict = data['obesity']['childhood obesity'];
+  startDate = new Date(dateDict['start_date']);
+  endDate = new Date(dateDict['end_date']);
 
-  var textValue = startDate;
+  var textValue = dateDict[dateDict['start_date']];
 
   var moving = false;
   var currentValue = 0;
@@ -35,10 +35,10 @@ d3.json("/data_collection/data.json").then(function(data) {
       .range([0, targetValue])
       .clamp(true);
 
-  var index = d3.scaleLinear()
-      .domain([0, dateList.length])
-      .range([0, targetValue])
-      .clamp(true);
+  // var index = d3.scaleLinear()
+  //     .domain([0, dateList.length])
+  //     .range([0, targetValue])
+  //     .clamp(true);
 
   var slider = svg.append("g")
       .attr("class", "slider")
@@ -69,6 +69,7 @@ d3.json("/data_collection/data.json").then(function(data) {
       .append("text")
       .attr("x", x)
       .attr("y", 10)
+      .attr("font-size", "10px")
       .attr("text-anchor", "middle")
       .text(function(d) { return formatDateIntoYear(d); });
 
@@ -81,6 +82,7 @@ d3.json("/data_collection/data.json").then(function(data) {
       .attr("text-anchor", "middle")
       .text(formatDate(startDate))
       .attr("transform", "translate(0," + (-25) + ")")
+      .attr("font-size", "10px")
 
 
   //adding text element to svg
@@ -88,6 +90,7 @@ d3.json("/data_collection/data.json").then(function(data) {
                 .text(textValue)
                 .attr("x", 150)
                 .attr("y", 150)
+                .attr("font-size", "35px")
 
   function update(h, i) {
     // update position and text of label according to slider scale
@@ -96,7 +99,8 @@ d3.json("/data_collection/data.json").then(function(data) {
       .attr("x", x(h))
       .text(formatDate(h));
     //Displaying text to page
-    text.text(h);
+
+    text.text(dateDict[formatDate(h)]);
   }
 
 });

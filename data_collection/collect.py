@@ -48,8 +48,9 @@ for keyword in keywords:
 
             for subkey in currList:
                 interest_data = {interest.index[x].strftime("%m/%d/%Y"): int(interest[subkey][x]) for x in range(len(interest))}
-                print(interest_data)
                 data[keyword][subkey] = interest_data
+                data[keyword][subkey]['start_date'] = interest.index[0].strftime("%m/%d/%Y")
+                data[keyword][subkey]['end_date'] = interest.index[len(interest) - 1].strftime("%m/%d/%Y")
     # kw_list = subkeywords[:5]
     # kw_list2 = subkeywords[5:]
 
