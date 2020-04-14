@@ -47,10 +47,9 @@ for keyword in keywords:
             interest = pytrends.interest_over_time()
 
             for subkey in currList:
-                print(subkey)
-                interest_data = [{"date": interest.index[x].strftime("%m/%d/%Y"), "val": int(interest[subkey][x])} for x in range(len(interest))]
+                interest_data = {interest.index[x].strftime("%m/%d/%Y"): int(interest[subkey][x]) for x in range(len(interest))}
+                print(interest_data)
                 data[keyword][subkey] = interest_data
-print(data)
     # kw_list = subkeywords[:5]
     # kw_list2 = subkeywords[5:]
 
@@ -74,8 +73,8 @@ print(data)
     #         data[keyword][subkey] = interest_data
 
 # ******* Uncoment to write to file ***********
-# with open('play_around.json', 'w') as outfile:
-#     json.dump(data, outfile)
+with open('play_around.json', 'w') as outfile:
+    json.dump(data, outfile)
 
 print("Done")
 exit()
