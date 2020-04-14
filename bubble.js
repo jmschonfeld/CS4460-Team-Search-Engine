@@ -10,7 +10,7 @@ var bubble = d3.pack()
 
 // Attach an svg element to the #bubbles element
 
-var svg = d3.select("#bubbles").append("svg")
+var svgBubble = d3.select("#bubbles").append("svg")
     .attr("width", vizSize)
     .attr("height", vizSize)
     .attr("class", "bubble");
@@ -68,7 +68,7 @@ function updateBubbles_active(topic, date) {
 
   // Setup the circles
 
-  var nodes = svg.selectAll('.node').data(root.children);
+  var nodes = svgBubble.selectAll('.node').data(root.children);
   var nodeEnter = nodes.enter()
       .append("g")
       .attr("class", "node");
@@ -83,7 +83,7 @@ function updateBubbles_active(topic, date) {
 
   // Update existing circles
   update.attr("transform", function(d) {
-        return "translate(" + d.x + "," + d.y + ")"; 
+        return "translate(" + d.x + "," + d.y + ")";
       });
 
   update.select("text")
