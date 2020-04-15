@@ -35,11 +35,6 @@ d3.json("/data_collection/play_around.json").then(function(data) {
       .range([0, targetValue])
       .clamp(true);
 
-  // var index = d3.scaleLinear()
-  //     .domain([0, dateList.length])
-  //     .range([0, targetValue])
-  //     .clamp(true);
-
   var slider = svg.append("g")
       .attr("class", "slider")
       .attr("transform", "translate(" + margin.left + "," + height/5 + ")");
