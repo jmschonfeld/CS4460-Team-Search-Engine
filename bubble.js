@@ -1,6 +1,6 @@
 // Setup the bubbles vizualization
 
-var vizSize = 200,
+var vizSize = 400,
     valueFormatter = d3.format(",d"),
     scaleColor = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -23,15 +23,11 @@ function formatData(data, key, date) {
   }
   var children = [];
   for (const [subtopic, values] of Object.entries(data[key])) {
-    for (var j = 0; j < values.length; j++) {
-      if (values[j].date == date) {
-        children.push({topic: subtopic, value: values[j].val});
-        break;
-      }
+    if (!(date in values)) {
+      console.warn("[BUBBLES] WARNING: Unable to find any data for '" + key + "' on '" + date + "'. This date was not listed in the dataset.");
+    } else {
+        children.push({topic: subtopic, value: values[date]});
     }
-  }
-  if (children.length == 0) {
-    console.warn("[BUBBLES] WARNING: Unable to find any data for '" + key + "' on '" + date + "'. This date was not listed in the dataset.");
   }
   return {
     name: "ROOT",
@@ -77,7 +73,8 @@ function updateBubbles_active(topic, date) {
   nodeEnter.append("circle");
   nodeEnter.append("text")
       .attr("dy", ".3em")
-      .style("text-anchor", "middle");
+      .style("text-anchor", "middle")
+      .style("font-size", "10px");
 
   var update = nodes.merge(nodeEnter);
 
@@ -107,7 +104,7 @@ function updateBubbles_active(topic, date) {
 }
 
 // Load the dataset
-d3.json("data_collection/data.json").then(function(data) {
+d3.json("data_collection/play_around.json").then(function(data) {
   dataset = data;
 
   if (defaultTopic && defaultDate) {
