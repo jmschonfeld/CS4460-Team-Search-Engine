@@ -11,27 +11,21 @@ var projection = d3.geoAlbersUsa()
         .scale(1000*1.25)
         .translate([width / 2, height / 2]);
 
-console.log(1);
 
 var path = d3.geoPath()
         .projection(projection);
 
-console.log(2);
 
 // Create SCG with specified width and height:
 var svgMap = d3.select("#map").append("svg")
         .attr("width", width)
         .attr("height", height);
 
-console.log(3);
-
 // Define scale for bubble radius:
 var radius = d3.scaleSqrt()
-        .domain([0, 1e6*1000])
+        .domain([0, 1e4*1000])
         .range([0, 15*1000]);
 
-
-console.log(4);
 
 // Read US map data:
 d3.json("data_collection/us.json").then(function(us) {
@@ -48,30 +42,23 @@ d3.json("data_collection/us.json").then(function(us) {
             .attr("class", "state-boundary")
             .attr("d", path);
 
-    // Read latitude, longitude data:
-    d3.csv("data_collection/data.csv").then(function(d) {
-        console.log(d);
-        return {
-            lat : +d.lat,
-            long : +d.long,
-            duration: +d.duration
-        };
-    }, function(data) {
-//            console.log(data);
+    d3.json("data_collection/all_state_data.json").then(function(d) {
+
+        var initPoint = d['obesity']['04/19/2015'];
+        initPoint = Object.values(initPoint);
+
         svgMap.selectAll("circle")
-            .data(data).enter()
+            .data(initPoint).enter()
             .append("circle")
                 .attr("class", "bubble")
             .attr("cx", function (d) {
-                return projection([d.lat,d.long])[0];
+                return projection([d.long,d.lat])[0];
             })
             .attr("cy", function (d) {
-                return projection([d.lat,d.long])[1]; })
+                return projection([d.long,d.lat])[1]; })
             .attr("r", "6px")
             .attr("r", function(d) {
-//                    console.log(d.duration);
-                console.log(radius(d.duration));
-                return radius(d.duration)
+                return radius(d.weight)
             } )
             .attr("fill", "#00E5FF");
     });
