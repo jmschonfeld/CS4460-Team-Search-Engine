@@ -113,5 +113,40 @@ def location_data():
     with open('all_state_data1.json', 'w') as outfile:
         json.dump(final_mapping, outfile)
 
+def related_table_data():
+    final_mapping = {}
 
+    start = datetime.datetime.strptime("19-04-2015", "%d-%m-%Y")
+    end = datetime.datetime.strptime("12-04-2020", "%d-%m-%Y")
+    dates = list(rrule(WEEKLY, dtstart=start, until=end, ))
+    pytrends = TrendReq(hl='en-US', tz=360)
+    initial_keywords = ['obesity', 'diet', 'exercise', 'disease', 'cancer']
+
+    for item in initial_keywords:
+        final_mapping[item] = {}
+
+    for date in dates:
+        print('Starting: ' + date.strftime("%Y-%m-%d"))
+
+        date_key = date.strftime("%m/%d/%Y")
+        dates_str = date.strftime("%Y-%m-%d") + " " + date.strftime("%Y-%m-%d")
+        pytrends.build_payload(kw_list=initial_keywords, timeframe=dates_str)
+        related = pytrends.related_queries()
+
+        for key in related:
+            if type(related[key]['top']) == type(None):
+                final_mapping[key][date_key] = [None, None, None, None, None]
+            else:
+                val = related[key]['top'][:5].to_numpy()
+                val = val[:,0].tolist()
+                final_mapping[key][date_key] = val
+        print('Complete: ' + date.strftime("%Y-%m-%d"))
+
+    print('Done')
+    with open('related_table_data.json', 'w') as outfile:
+        json.dump(final_mapping, outfile)
+
+
+
+related_table_data()
 # location_data()
