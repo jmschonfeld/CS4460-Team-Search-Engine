@@ -6,6 +6,7 @@ var sliderMargin = {top:50, right:50, bottom:0, left:50},
   sliderWidth = 960 - sliderMargin.left - sliderMargin.right,
   sliderHeight = 500 - sliderMargin.top - sliderMargin.bottom;
 
+
 var sliderSVG = d3.select("#slider")
     .append("svg")
     .attr("width", sliderWidth + sliderMargin.left + sliderMargin.right)
@@ -18,12 +19,20 @@ function setSliderCallback(cbFunction) {
   sliderCallback = cbFunction;
 }
 
+function getSliderStartDate() {
+  return formatDate(sliderStartDate);
+}
+
 d3.json("/data_collection/play_around.json").then(function(data) {
 
 
   var dateDict = data['obesity']['childhood obesity'];
   var startDate = new Date(dateDict['start_date']);
   var endDate = new Date(dateDict['end_date']);
+
+  if (sliderCallback) {
+    sliderCallback(formatDate(startDate));
+  }
 
   var playButton = d3.select("#play-button");
 

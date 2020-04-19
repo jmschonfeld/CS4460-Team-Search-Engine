@@ -39,6 +39,8 @@ function formatData(data, key, date) {
 defaultTopic = undefined;
 defaultDate = undefined;
 
+dataset = undefined;
+
 // Updates the vizualization with a new topic and date
 function updateBubbles(topic, date) {
   if (!dataset) {
