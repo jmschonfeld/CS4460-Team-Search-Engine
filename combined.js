@@ -14,10 +14,18 @@ var sliderChanged = function(inputDate) {
   mostRecentSliderDate = inputDate || mostRecentSliderDate;
 
   if (date && currentTab) {
-    updateBubbles(currentTab, date);
+    if (typeof updateBubbles === 'function') {
+      updateBubbles(currentTab, date);
+    } else {
+      console.warn("bubble.js not loaded - unable to update bubbles")
+    }
   }
 }
-setSliderCallback(sliderChanged);
+if (typeof setSliderCallback === 'function') {
+  setSliderCallback(sliderChanged);
+} else {
+  console.warn("slider.js not loaded - unable to set slider callback")
+}
 
 
 
