@@ -17,14 +17,19 @@ var sliderChanged = function(inputDate) {
     if (typeof updateBubbles === 'function') {
       updateBubbles(currentTab, date);
     } else {
-      console.warn("bubble.js not loaded - unable to update bubbles")
+      console.warn("bubble.js not loaded - unable to update bubbles");
+    }
+    if (typeof updateMap === 'function') {
+      updateMap(currentTab, date);
+    } else {
+      console.warn("map.js not loaded - unable to update map");
     }
   }
 }
 if (typeof setSliderCallback === 'function') {
   setSliderCallback(sliderChanged);
 } else {
-  console.warn("slider.js not loaded - unable to set slider callback")
+  console.warn("slider.js not loaded - unable to set slider callback");
 }
 
 
@@ -46,9 +51,6 @@ function openTab(tabID) {
   // Reset data by calling a slider change using the most recent date
   sliderChanged(undefined);
 }
-
-
-
 
 // Start by selecting the default tab of Obesity
 openTab('Obesity');
