@@ -58,7 +58,9 @@ d3.json("/data_collection/play_around.json").then(function(data) {
         .on("start.interrupt", function() { slider.interrupt(); })
         .on("start drag", function() {
           var currentValue = d3.event.x;
-          update(x.invert(currentValue));
+          var exactDate = x.invert(currentValue);
+          var nearestSunday = d3.timeWeek.round(exactDate);
+          update(nearestSunday);
         })
       );
 

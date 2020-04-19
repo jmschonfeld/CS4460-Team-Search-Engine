@@ -11,7 +11,7 @@ var tabIDsToDataTags = {
 var mostRecentSliderDate = undefined;
 var sliderChanged = function(inputDate) {
   date = inputDate || mostRecentSliderDate; // Use the input date, or fallback to the most recent date if undefined
-  mostRecentSliderDate = inputDate;
+  mostRecentSliderDate = inputDate || mostRecentSliderDate;
 
   if (date && currentTab) {
     updateBubbles(currentTab, date);
