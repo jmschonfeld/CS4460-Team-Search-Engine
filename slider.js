@@ -23,7 +23,7 @@ function getSliderStartDate() {
   return formatDate(sliderStartDate);
 }
 
-d3.json("/data_collection/play_around.json").then(function(data) {
+d3.json("/data_collection/final_related_data.json").then(function(data) {
 
 
   var dateDict = data['obesity']['childhood obesity'];

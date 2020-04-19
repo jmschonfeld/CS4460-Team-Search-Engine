@@ -106,7 +106,7 @@ function updateBubbles_active(topic, date) {
 }
 
 // Load the dataset
-d3.json("data_collection/play_around.json").then(function(data) {
+d3.json("data_collection/final_related_data.json").then(function(data) {
   dataset = data;
 
   if (defaultTopic && defaultDate) {
