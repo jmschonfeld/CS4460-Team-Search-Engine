@@ -1,18 +1,19 @@
 // Setup the bubbles vizualization
 
-var vizSize = 400,
+var bubbleVizHeight = 150,
+    bubbleVizWidth = 300,
     valueFormatter = d3.format(",d"),
     scaleColor = d3.scaleOrdinal(d3.schemeCategory10);
 
 var bubble = d3.pack()
-    .size([vizSize, vizSize])
+    .size([bubbleVizWidth, bubbleVizHeight])
     .padding(1.5);
 
 // Attach an svg element to the #bubbles element
 
 var svgBubble = d3.select("#bubbles").append("svg")
-    .attr("width", vizSize)
-    .attr("height", vizSize)
+    .attr("width", bubbleVizWidth)
+    .attr("height", bubbleVizHeight)
     .attr("class", "bubble");
 
 // Formats the collected JSON data into data that can be used for d3.heirarchy

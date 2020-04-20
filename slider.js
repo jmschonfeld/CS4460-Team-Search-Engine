@@ -2,9 +2,9 @@ var formatDateIntoYear = d3.timeFormat("%Y");
 var formatDate = d3.timeFormat("%m/%d/%Y");
 var parseDate = d3.timeParse("%m/%d/%y");
 
-var sliderMargin = {top:50, right:50, bottom:0, left:50},
+var sliderMargin = {top:0, right:50, bottom:0, left:50},
   sliderWidth = 960 - sliderMargin.left - sliderMargin.right,
-  sliderHeight = 500 - sliderMargin.top - sliderMargin.bottom;
+  sliderHeight = 180 - sliderMargin.top - sliderMargin.bottom;
 
 
 var sliderSVG = d3.select("#slider")

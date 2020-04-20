@@ -3,6 +3,7 @@ import json
 import datetime
 from dateutil.rrule import rrule, WEEKLY
 from pprint import pprint
+from datetime import timedelta
 
 def bubble_data():
     pytrends = TrendReq(hl='en-US', tz=360)
@@ -115,6 +116,7 @@ def location_data():
 
 def related_table_data():
     final_mapping = {}
+    most_recent_nonfail = {}
 
     start = datetime.datetime.strptime("19-04-2015", "%d-%m-%Y")
     end = datetime.datetime.strptime("12-04-2020", "%d-%m-%Y")
@@ -122,28 +124,35 @@ def related_table_data():
     pytrends = TrendReq(hl='en-US', tz=360)
     initial_keywords = ['obesity', 'diet', 'exercise', 'disease', 'cancer']
 
-    for item in initial_keywords:
-        final_mapping[item] = {}
+    with open('final_related_data.json') as json_file:
+        init_related = json.load(json_file)
+
+        for item in initial_keywords:
+            final_mapping[item] = {}
+            most_recent_nonfail[item] = list(init_related[item].keys())
 
     for date in dates:
         print('Starting: ' + date.strftime("%Y-%m-%d"))
 
         date_key = date.strftime("%m/%d/%Y")
-        dates_str = date.strftime("%Y-%m-%d") + " " + date.strftime("%Y-%m-%d")
+        next_day = date + timedelta(days=7)
+        dates_str = date.strftime("%Y-%m-%d") + " " + next_day.strftime("%Y-%m-%d")
         pytrends.build_payload(kw_list=initial_keywords, timeframe=dates_str)
         related = pytrends.related_queries()
 
         for key in related:
             if type(related[key]['top']) == type(None):
-                final_mapping[key][date_key] = [None, None, None, None, None]
+                print("FAILED " + str(key))
+                final_mapping[key][date_key] = most_recent_nonfail[key]
             else:
                 val = related[key]['top'][:5].to_numpy()
                 val = val[:,0].tolist()
                 final_mapping[key][date_key] = val
+                most_recent_nonfail[key] = val
         print('Complete: ' + date.strftime("%Y-%m-%d"))
 
     print('Done')
-    with open('related_table_data.json', 'w') as outfile:
+    with open('related_table_data_final.json', 'w') as outfile:
         json.dump(final_mapping, outfile)
 
 
