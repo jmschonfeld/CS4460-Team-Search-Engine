@@ -17,14 +17,14 @@ function updateTable(topic, date) {
 tbody = undefined;
 
 
-d3.json("data_collection/related_table_data.json").then(function(data) {
+d3.json("data_collection/related_table_data_final.json").then(function(data) {
     // d3.select("#relatedTable").selectAll("p")
     //     .data(data)
     //     .enter()
     //     .append("p")
     //     .text(function(d, i) {return d});
 
-    var table = d3.select("#relatedTable").append('table').attr("class", "table table-striped");
+    var table = d3.select("#relatedTable").append('table').attr("class", "table table-striped table-dark table-sm");
     var thead = table.append('thead');
     tbody = table.append('tbody');
 
@@ -34,7 +34,7 @@ d3.json("data_collection/related_table_data.json").then(function(data) {
       .data(["Related Terms"]).enter()
       .append('th')
         .text(function (column) { return column; });
-  
+
 
     test_data = data['cancer']['04/19/2015'];
 

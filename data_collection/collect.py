@@ -130,26 +130,36 @@ def related_table_data():
         for item in initial_keywords:
             final_mapping[item] = {}
             most_recent_nonfail[item] = list(init_related[item].keys())
-
+    count =0
     for date in dates:
-        print('Starting: ' + date.strftime("%Y-%m-%d"))
+        try:
+            print('Starting: ' + date.strftime("%Y-%m-%d"))
 
-        date_key = date.strftime("%m/%d/%Y")
-        next_day = date + timedelta(days=7)
-        dates_str = date.strftime("%Y-%m-%d") + " " + next_day.strftime("%Y-%m-%d")
-        pytrends.build_payload(kw_list=initial_keywords, timeframe=dates_str)
-        related = pytrends.related_queries()
+            date_key = date.strftime("%m/%d/%Y")
+            next_day = date + timedelta(days=7)
+            dates_str = date.strftime("%Y-%m-%d") + " " + next_day.strftime("%Y-%m-%d")
+            pytrends.build_payload(kw_list=initial_keywords, timeframe=dates_str)
+            related = pytrends.related_queries()
 
-        for key in related:
-            if type(related[key]['top']) == type(None):
-                print("FAILED " + str(key))
+            for key in related:
+                if type(related[key]['top']) == type(None):
+                    print("FAILED " + str(key))
+                    final_mapping[key][date_key] = most_recent_nonfail[key]
+                else:
+                    val = related[key]['top'][:5].to_numpy()
+                    val = val[:,0].tolist()
+                    final_mapping[key][date_key] = val
+                    most_recent_nonfail[key] = val
+            print('Complete: ' + date.strftime("%Y-%m-%d"))
+        except:
+            date_key = date.strftime("%m/%d/%Y")
+            print("*"*40 + 'FAILED AT: ' + date_key + "*"*40)
+            for key in initial_keywords:
                 final_mapping[key][date_key] = most_recent_nonfail[key]
-            else:
-                val = related[key]['top'][:5].to_numpy()
-                val = val[:,0].tolist()
-                final_mapping[key][date_key] = val
-                most_recent_nonfail[key] = val
-        print('Complete: ' + date.strftime("%Y-%m-%d"))
+            print('Complete: ' + date.strftime("%Y-%m-%d"))
+
+
+
 
     print('Done')
     with open('related_table_data_final.json', 'w') as outfile:
