@@ -24,6 +24,11 @@ var sliderChanged = function(inputDate) {
     } else {
       console.warn("map.js not loaded - unable to update map");
     }
+    if (typeof updateTable === 'function') {
+      updateTable(currentTab, date);
+    } else {
+      console.warn("table.js not loaded - unable to update table");
+    }
   }
 }
 if (typeof setSliderCallback === 'function') {

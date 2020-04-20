@@ -2,13 +2,13 @@ var w = window,
         d = document,
         e = d.documentElement,
         g = d.getElementsByTagName('#map')[0],
-        width = 750,
-        height = 500;
+        width = 375,
+        height = 250;
 
 
 // Sclae projection to fit in SVG:
 var projection = d3.geoAlbersUsa()
-        .scale(1000)
+        .scale(500)
         .translate([width / 2, height / 2]);
 
 
@@ -23,7 +23,7 @@ var svgMap = d3.select("#map").append("svg")
 
 // Define scale for bubble radius:
 var radius = d3.scaleSqrt()
-        .domain([0, 1e4*1000])
+        .domain([0, 1e5*1000])
         .range([0, 15*1000]);
 
 
