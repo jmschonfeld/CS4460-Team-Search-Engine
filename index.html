@@ -13,169 +13,33 @@
       <button id='Exercise-button' class="tablinks" onclick="openTab('Exercise')">Exercise</button>
       <button id='Disease-button' class="tablinks" onclick="openTab('Disease')">Disease</button>
       <button id='Cancer-button' class="tablinks" onclick="openTab('Cancer')">Cancer</button>
-      <button id='Slider Example-button' class="tablinks" onclick="openTab('Slider Example')">Slider</button>
-      <button id='Bubble Example-button' class="tablinks" onclick="openTab('Bubble Example')">Bubble</button>
-      <button id='Map Example-button' class="tablinks" onclick="openTab('Map Example')">Map</button>
-      <button id='Table Example-button' class="tablinks" onclick="openTab('Table Example')">Table</button>
     </div>
 
     <!-- Tab content -->
-    <div id="Obesity" class="tabcontent">
-      <div class="container">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <svg id="obesity-chart" width="600" height="600" style="border: 1px solid #777"></svg>
-          </div>
-          <div class="col"></div>
+    <div id="content" class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col text-center">
+          <div id='map'></div>
         </div>
-        <div class="row">
-          <div class="col text-center">
-            <h1>Table Pos</h1>
-          </div>
-          <div class="col text-center">
-            <h1>Bubble Pos</h1>
-          </div>
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <div id='relatedTable'></div>
         </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col text-center">
-            <h1>Silder Pos</h1>
-          </div>
-          <div class="col"></div>
+        <div class="col text-center">
+        </div>
+        <div class="col text-center">
+          <div id='bubbles'></div>
         </div>
       </div>
-    </div>
-
-    <div id="Diet" class="tabcontent">
-      <div class="container">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <svg id="diet-chart" width="600" height="600" style="border: 1px solid #777"></svg>
-          </div>
-          <div class="col"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col text-center">
+          <div id='slider' style="height:100px"></div>
         </div>
-        <div class="row">
-          <div class="col text-center">
-            <h1>Table Pos</h1>
-          </div>
-          <div class="col text-center">
-            <h1>Bubble Pos</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col text-center">
-            <h1>Silder Pos</h1>
-          </div>
-          <div class="col"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="Exercise" class="tabcontent">
-      <div class="container">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <svg id="exercise-chart" width="600" height="600" style="border: 1px solid #777"></svg>
-          </div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col text-center">
-            <h1>Table Pos</h1>
-          </div>
-          <div class="col text-center">
-            <h1>Bubble Pos</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col text-center">
-            <h1>Silder Pos</h1>
-          </div>
-          <div class="col"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="Disease" class="tabcontent">
-      <div class="container">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <svg id="disease-chart" width="600" height="600" style="border: 1px solid #777"></svg>
-          </div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col text-center">
-            <h1>Table Pos</h1>
-          </div>
-          <div class="col text-center">
-            <h1>Bubble Pos</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col text-center">
-            <h1>Silder Pos</h1>
-          </div>
-          <div class="col"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="Cancer" class="tabcontent">
-      <div class="container">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <svg id="cancer-chart" width="600" height="600" style="border: 1px solid #777"></svg>
-          </div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col text-center">
-            <h1>Table Pos</h1>
-          </div>
-          <div class="col text-center">
-            <h1>Bubble Pos</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col text-center">
-            <h1>Silder Pos</h1>
-          </div>
-          <div class="col"></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="Slider Example" class="tabcontent">
-      <div id="slider">
-      </div>
-    </div>
-
-    <div id="Bubble Example" class="tabcontent">
-      <div id="bubbles">
-      </div>
-      <a href="javascript:updateBubbles('obesity', '04/12/2020');">Obesity</a>
-      <a href="javascript:updateBubbles('cancer', '04/12/2020');">Cancer</a>
-      <a href="javascript:updateBubbles('cancer', 'asjdnasdad');">Invalid date</a>
-      <a href="javascript:updateBubbles('caadsadsdncer', '04/12/2020');">Invalid topic</a>
-    </div>
-
-    <div id="Map Example" class="tabcontent">
-      <div id="map">
-      </div>
-    </div>
-
-    <div id="Table Example" class="tabcontent">
-      <div id="table">
+        <div class="col"></div>
       </div>
     </div>
 
@@ -189,9 +53,9 @@
 <script src="//d3js.org/topojson.v1.min.js"></script>
 
 <!-- Local Code -->
-<script src="./index.js"></script>
-<script src="./dr2_example_charts.js"></script>
 <script src="./slider.js"></script>
 <script src="./bubble.js"></script>
 <script src="./map.js"></script>
-<script scr='./table.js'></script>
+<script src="./table.js"></script>
+<script src="./index.js"></script>
+

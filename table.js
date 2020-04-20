@@ -57,13 +57,17 @@ function updateTable_active(topic, date) {
 }
 
 function tabulate(data) {
+    var a = ["", "", "", "", ""];
+    for (var i = 0; i < data.length; i++) {
+      a[i] = data[i];
+    }
 
     // create a row for each object in the data
     var nodes = tbody.selectAll('tr')
-      .data(data);
+      .data(a);
     var nodesEnter = nodes.enter().append('tr');
 
-    nodesEnter.append('td');
+    nodesEnter.append('td').attr("height", "30px");
 
     var update = nodes.merge(nodesEnter);
 
