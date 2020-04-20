@@ -1,7 +1,7 @@
 // Setup the bubbles vizualization
 
-var bubbleVizHeight = 300,
-    bubbleVizWidth = 400,
+var bubbleVizHeight = 150,
+    bubbleVizWidth = 300,
     valueFormatter = d3.format(",d"),
     scaleColor = d3.scaleOrdinal(d3.schemeCategory10);
 
