@@ -5,6 +5,8 @@ from dateutil.rrule import rrule, WEEKLY
 from pprint import pprint
 from datetime import timedelta
 
+#DO NOT RUN SCRIPT I MAY OVERWRITE DATA
+
 def bubble_data():
     pytrends = TrendReq(hl='en-US', tz=360)
 
@@ -58,8 +60,8 @@ def bubble_data():
                     data[keyword][subkey]['end_date'] = interest.index[len(interest) - 1].strftime("%m/%d/%Y")
 
     # ******* Uncoment to write to file ***********
-    with open('play_around.json', 'w') as outfile:
-        json.dump(data, outfile)
+    # with open('play_around.json', 'w') as outfile:
+    #     json.dump(data, outfile)
 
 def location_data():
     lat_long_mapping = {}
@@ -85,7 +87,9 @@ def location_data():
     while i < len(dates):
         try:
             print('Start: ' + dates[i].strftime("%Y-%m-%d"))
-            dates_str = dates[i].strftime("%Y-%m-%d") + " " + dates[i].strftime("%Y-%m-%d")
+            next_day = dates[i] + timedelta(days=7)
+            dates_str = dates[i].strftime("%Y-%m-%d") + " " + next_day.strftime("%Y-%m-%d")
+            print(dates_str)
             pytrends.build_payload(kw_list=initial_keywords, geo="US", timeframe=dates_str)
             regional = pytrends.interest_by_region(resolution='REGION', inc_low_vol=True, inc_geo_code=False)
 
@@ -111,8 +115,8 @@ def location_data():
             print('Complete: ' + dates[i].strftime("%Y-%m-%d"))
         i += 1
 
-    with open('all_state_data1.json', 'w') as outfile:
-        json.dump(final_mapping, outfile)
+    # with open('test.json', 'w') as outfile:
+    #     json.dump(final_mapping, outfile)
 
 def related_table_data():
     final_mapping = {}
@@ -162,10 +166,10 @@ def related_table_data():
 
 
     print('Done')
-    with open('related_table_data_final.json', 'w') as outfile:
-        json.dump(final_mapping, outfile)
+    # with open('related_table_data_final1.json', 'w') as outfile:
+    #     json.dump(final_mapping, outfile)
 
 
 
-related_table_data()
+# related_table_data()
 # location_data()
