@@ -3,7 +3,7 @@
 var bubbleVizHeight = 150,
     bubbleVizWidth = 300,
     valueFormatter = d3.format(",d"),
-    scaleColor = d3.scaleOrdinal(d3.schemeCategory10);
+    bubbleScaleColor = d3.scaleOrdinal(d3.schemeCategory10);
 
 var bubble = d3.pack()
     .size([bubbleVizWidth, bubbleVizHeight])
@@ -17,7 +17,7 @@ var svgBubble = d3.select("#bubbles").append("svg")
     .attr("class", "bubble");
 
 // Formats the collected JSON data into data that can be used for d3.heirarchy
-function formatData(data, key, date) {
+function formatBubbleData(data, key, date) {
   if (!(key in data)) {
     console.error("[BUBBLES] ERROR: attempted to show data for the topic '" + key + "' which is not a topic contained in the dataset.");
     return;
@@ -59,7 +59,7 @@ function updateBubbles_active(topic, date) {
   }
 
   // Create heirarchical bubble data
-  var root = d3.hierarchy(formatData(dataset, topic, date))
+  var root = d3.hierarchy(formatBubbleData(dataset, topic, date))
       .sum(function(d) { return d.value; })
       .sort(function(a, b) { return b.value - a.value; });
 
@@ -97,7 +97,7 @@ function updateBubbles_active(topic, date) {
   update.select("circle")
       .attr("r", function(d) { return d.r; })
       .style("fill", function(d) {
-        return scaleColor(d.data.topic);
+        return bubbleScaleColor(d.data.topic);
       });
   update.select("title")
       .text(function(d) { return d.data.topic + ": " + valueFormatter(d.value); });
