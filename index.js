@@ -29,6 +29,11 @@ var sliderChanged = function(inputDate) {
     } else {
       console.warn("table.js not loaded - unable to update table");
     }
+    if (typeof updateLegend === 'function') {
+      updateLegend(currentTab, date);
+    } else {
+      console.warn("legend.js not loaded - unable to update legend");
+    }
   }
 }
 if (typeof setSliderCallback === 'function') {

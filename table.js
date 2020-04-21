@@ -35,9 +35,6 @@ d3.json("data_collection/related_table_data_final.json").then(function(data) {
       .append('th')
         .text(function (column) { return column; });
 
-
-    test_data = data['cancer']['04/19/2015'];
-
      datasetTable = data;
 
     if (defaultTopicTable && defaultDateTable) {
